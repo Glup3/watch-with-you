@@ -1,11 +1,11 @@
 import React, { FunctionComponent } from 'react'
-
-// interface StartPageProps {}
+import { Box } from '@material-ui/core'
+import { RoomForm } from '../domains/start/components/RoomForm'
 
 export const StartPage: FunctionComponent = () => {
     return (
-        <div>
-            <h1>Start Page</h1>
-        </div>
+        <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
+            <RoomForm />
+        </Box>
     )
 }
