@@ -2,6 +2,8 @@ import express from 'express';
 import http from 'http';
 import { Server } from 'socket.io';
 
+import registerRoomHandlers from './events/roomHandler';
+
 const PORT = process.env.PORT || 3010;
 
 const app = express();
@@ -11,17 +13,7 @@ const io = new Server(server, { cors: { origin: '*' } });
 io.on('connection', (socket) => {
   console.log('Connected: ', socket.id);
 
-  socket.on('message', function (message: string) {
-    console.log(message);
-  });
-
-  socket.on('JOIN_ROOM', (roomId) => {
-    socket.join(roomId);
-  });
-
-  socket.on('LEAVE_ROOM', (roomId) => {
-    socket.leave(roomId);
-  });
+  registerRoomHandlers(io, socket);
 });
 
 server.listen(PORT, () => console.log(`Server running on Port ${PORT}`));

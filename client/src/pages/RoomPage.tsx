@@ -7,10 +7,10 @@ export const RoomPage = () => {
     const { roomId } = useParams<{ roomId: string }>()
 
     useEffect(() => {
-        socket.emit('JOIN_ROOM', roomId)
+        socket.emit('room:join', roomId)
 
         return () => {
-            socket.emit('LEAVE_ROOM', roomId)
+            socket.emit('room:leave', roomId)
         }
     })
 
