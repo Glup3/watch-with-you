@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useParams } from 'react-router'
+import { SocketContext } from '../common/context/socketContext'
 
 export const RoomPage = () => {
+    const { socket } = useContext(SocketContext)
     const { roomId } = useParams<{ roomId: string }>()
+
+    useEffect(() => {
+        socket.emit('JOIN_ROOM', roomId)
+
+        return () => {
+            socket.emit('LEAVE_ROOM', roomId)
+        }
+    })
 
     return (
         <div>

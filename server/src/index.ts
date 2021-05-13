@@ -14,6 +14,14 @@ io.on('connection', (socket) => {
   socket.on('message', function (message: string) {
     console.log(message);
   });
+
+  socket.on('JOIN_ROOM', (roomId) => {
+    socket.join(roomId);
+  });
+
+  socket.on('LEAVE_ROOM', (roomId) => {
+    socket.leave(roomId);
+  });
 });
 
 server.listen(PORT, () => console.log(`Server running on Port ${PORT}`));
