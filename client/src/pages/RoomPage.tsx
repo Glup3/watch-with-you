@@ -1,15 +1,13 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useParams } from 'react-router'
 import { SocketContext } from '../common/context/socketContext'
+import { Grid } from '@material-ui/core'
+import { VideoPlayer } from '../domains/room/components/VideoPlayer'
+import { UserList } from '../domains/room/components/UserList'
 
 export const RoomPage = () => {
     const { socket } = useContext(SocketContext)
     const { roomId } = useParams<{ roomId: string }>()
-    const [users, setUsers] = useState<string[]>([])
-
-    const handleSetUserList = useCallback((userList: string[]) => {
-        setUsers(userList)
-    }, [])
 
     useEffect(() => {
         socket.connect()
@@ -20,23 +18,10 @@ export const RoomPage = () => {
         }
     }, [socket, roomId])
 
-    useEffect(() => {
-        socket.on('room:userList', handleSetUserList)
-
-        return () => {
-            socket.off('room:userList', handleSetUserList)
-        }
-    }, [socket, handleSetUserList])
-
     return (
-        <div>
-            <h1>Room ID: {roomId}</h1>
-            <p>Users:</p>
-            <ul>
-                {users.map((u) => (
-                    <li key={u}>{u}</li>
-                ))}
-            </ul>
-        </div>
+        <Grid container>
+            <VideoPlayer />
+            <UserList />
+        </Grid>
     )
 }
