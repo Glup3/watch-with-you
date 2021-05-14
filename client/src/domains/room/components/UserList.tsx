@@ -26,7 +26,7 @@ export const UserList = () => {
                 {users.map((user) => (
                     <ListItem key={`user-${user}`}>
                         <ListItemIcon>
-                            <PersonIcon color="primary" fontSize="large" />
+                            <PersonIcon color={socket.id === user ? 'secondary' : 'primary'} fontSize="large" />
                         </ListItemIcon>
                         <ListItemText primary={user} />
                     </ListItem>
