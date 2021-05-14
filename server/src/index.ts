@@ -11,7 +11,7 @@ const server = http.createServer(app);
 const io = new Server(server, { cors: { origin: '*' } });
 
 io.on('connection', (socket) => {
-  console.log('Connected: ', socket.id);
+  // console.log('Connected: ', socket.id);
 
   registerRoomHandlers(io, socket);
 });
