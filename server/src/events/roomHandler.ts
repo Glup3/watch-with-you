@@ -12,11 +12,6 @@ export default (
     sendUserList([roomId]);
   };
 
-  const leaveRoom = (roomId: string) => {
-    socket.leave(roomId);
-    sendUserList([roomId]);
-  };
-
   const sendUserList = (roomIds: string[]) => {
     for (const roomId of roomIds) {
       const room = io.of('/').adapter.rooms.get(roomId);
@@ -41,7 +36,6 @@ export default (
   };
 
   socket.on('room:join', joinRoom);
-  socket.on('room:leave', leaveRoom);
   socket.on('disconnect', disconnect);
   socket.on('disconnecting', disconnecting);
 };
