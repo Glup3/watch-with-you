@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme) =>
             marginBottom: theme.spacing(2)
         },
         paper: {
+            marginTop: theme.spacing(10),
             padding: theme.spacing(3)
         },
         submit: {
@@ -40,6 +41,8 @@ export const RoomForm: FunctionComponent = () => {
                     variant="outlined"
                     required
                     value={roomId}
+                    // eslint-disable-next-line jsx-a11y/no-autofocus
+                    autoFocus
                     onChange={(e) => setRoomId(e.target.value)}
                 />
                 <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>

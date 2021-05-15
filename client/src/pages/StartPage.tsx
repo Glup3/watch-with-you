@@ -4,7 +4,7 @@ import { RoomForm } from '../domains/start/components/RoomForm'
 
 export const StartPage: FunctionComponent = () => {
     return (
-        <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
+        <Box display="flex" justifyContent="center">
             <RoomForm />
         </Box>
     )
